@@ -1,5 +1,6 @@
 package org.example.estudantes.controller;
 
+import jakarta.websocket.server.ServerEndpoint;
 import lombok.AllArgsConstructor;
 import org.example.estudantes.entity.Estudante;
 import org.example.estudantes.service.EstudanteService;
@@ -33,12 +34,12 @@ public class EstudanteController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Estudante> atualizarEstudante(@PathVariable Estudante estudante) {
+    public ResponseEntity<Estudante> atualizarEstudante(@PathVariable Long id, @RequestBody Estudante estudante) {
         return estudanteService.atualizarEstudante(estudante);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> removerEstudante(@RequestParam Long id) {
-        return removerEstudante(id);
+    public ResponseEntity<String> removerEstudante(@PathVariable Long id) {
+        return estudanteService.removerEstudante(id);
     }
 }
